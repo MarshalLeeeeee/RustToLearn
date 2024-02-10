@@ -59,4 +59,65 @@ let spaces = spaces.len();
 
 shadowing + let immutable is still different from let mut. shadowing isolates scopes therefore even if variables can be mutable in the current scope, the variable of the same name in the outer scope is not affected. Thus, if we world not like the inner scope affect the outer scope, we should use shadowing + let immutable; if we would like any inner scope change the variable, we should use let mutable.
 
+### Data types
+Rust is a statically typed language.
+
+#### Scalar: 
+integer,  float, boolean, chracter
+
+##### integer
+type notation: (i/u)(8/16/32/64/128/size(32/64))
+
+type should match with value in type domain and should match regardless of platform or architecture.
+
+overflow cause panic in debug mode, cause 2' complement wrapping in release mode.
+
+handle possible overflow with
+
+ - wrapping_*
+ - checked_*
+ - overflowing_*
+ - saturating_*
+
+for mut variables, overflow is not exposed until runtime
+
+##### float
+type notation: f(32/64), f64 is by default
+
+##### bool
+type notation: bool 
+
+##### character:
+type notation: char
+
+use single quotes to wrap characters; use double quotes to wrap string
+
+the char type is in 4 bytes, representing a Unicode scalar value.
+
+#### Compound:
+Two primitive: tuple and array
+
+##### Tuple:
+can group objects with various types separated by comma
+
+with fix length
+
+compound / single assign with type inherited
+
+use ```.``` to indexing
+
+##### Array:
+group objects with same type.
+
+fixed length
+
+declare type and length
+
+initialized with default object and length
+
+use ```[]``` to indexing
+
+array index overflow result in runtime error (unlike cpp where index overflow some still get result from memory)
+
+
 # Toolchain
