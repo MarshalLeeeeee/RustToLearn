@@ -3,12 +3,12 @@ Rust learning progress
 
 ## Syntax
 
-### hello_world:
+### Hello world:
 use main as the code entry
 
 use 4 spaces as indent
 
-### hello_cargo:
+### Hello cargo:
 use the following command to create a cargo project with new directory created
 ```cargo new xxx```
 
