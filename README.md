@@ -7,6 +7,7 @@ Rust learning progress
 use main as the code entry
 
 use 4 spaces as indent
+---
 
 ### Hello cargo:
 use the following command to create a cargo project with new directory created
@@ -31,6 +32,7 @@ use the following command to bulid and run
 
 use the following comman to check compile without real compile and generating executable
 ```cargo check```
+---
 
 ### Variables and mutability
 create immutable variable (let is immutable by default).
@@ -41,6 +43,7 @@ create mutable variable
 
 constant: 1. cannot use with mut; 2. type must be declared; 3. statically defined (not runtime)
 ```const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;```
+---
 
 ### Shadowing
 variable are shadowed by scope stack. Inner scope is initialized from its parent scope, but the parent scopee will not be affected by the inner scope.
@@ -58,6 +61,7 @@ let spaces = spaces.len();
 ```
 
 shadowing + let immutable is still different from let mut. shadowing isolates scopes therefore even if variables can be mutable in the current scope, the variable of the same name in the outer scope is not affected. Thus, if we world not like the inner scope affect the outer scope, we should use shadowing + let immutable; if we would like any inner scope change the variable, we should use let mutable.
+---
 
 ### Data types
 Rust is a statically typed language.
@@ -118,11 +122,13 @@ initialized with default object and length
 use ```[]``` to indexing
 
 array index overflow result in runtime error (unlike cpp where index overflow some still get result from memory)
+---
 
 ### Statements and expressions
 Statements are instructions that perform some action and do not return a value, like ```let y = 6;```
 
 Expressions evaluate to a resultant value.
+---
 
 ### Function:
 declare function with the following format
@@ -130,18 +136,22 @@ declare function with the following format
 
 function with return value. Explicit return using ```return``` statement or implicit return the final expression
 ```fn func_name(par1: type1, par2: type2) -> return_type {statements; expression}``` 
+---
 
 ### Loop:
 no condition for block entry, continue or block manually.
 
 use the following syntax to name loop block with label. continue and break can be performed to certain loop block
 ```'loop_name: loop {...}```
+---
 
 ### While:
 Use condition to control the entry of the block
+---
 
 ### For:
 Iterate data through the container
+---
 
 
 
