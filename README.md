@@ -119,5 +119,18 @@ use ```[]``` to indexing
 
 array index overflow result in runtime error (unlike cpp where index overflow some still get result from memory)
 
+### Statements and expressions
+Statements are instructions that perform some action and do not return a value, like ```let y = 6;```
+
+Expressions evaluate to a resultant value.
+
+### Function:
+declare function with the following format
+```fn func_name(par1: type1, par2: type2) {statements;}```
+
+function with return value. Explicit return using ```return``` statement or implicit return the final expression
+```fn func_name(par1: type1, par2: type2) -> return_type {statements; expression}``` 
+
+
 
 # Toolchain
