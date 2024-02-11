@@ -187,7 +187,7 @@ stack data (which implement copy traits): copy : the new ownership copy from the
 
 #### Reference and Borrowing
 
-Reference is like a pointer. use & before variable and type. allow refer to value without getting ownership.
+Reference is like a pointer. use ```&``` before variable and type. allow refer to value without getting ownership.
 
 Borrrowing: create a reference.
 
