@@ -163,6 +163,41 @@ Iterate data through the container
 
 ---
 
+### Ownership:
+owenership is a way of memory management aside from garbage-collection or explicit allocate and free.
+
+ownership rules:
+ - Each value has an owner
+ - There can only be one owner at a time
+ - When the owner goes out of the scope, the value is dropped. (alike RAII in cpp)
+
+#### Memory allocation / free
+
+Stack: fix size and type, cheap to read and manage
+
+Heap: mutable size, expensize to read and manage
+
+#### Assignment / Function paramter / Function return
+
+heap data: move : the old ownership is invalid (transfer ownership)
+
+stack data (which implement copy traits): copy : the new ownership copy from the old data keeping the ownership valid
+
+#### Reference and Borrowing
+
+Reference is like a pointer. use & before variable and type. allow refer to value without getting ownership.
+
+Borrrowing: create a reference.
+
+The permission of reference depends on mutability.
+
+Mutable reference can at most have one!! More precisely, the usage span of mutable reference cannot overlap with any other references (both mutable and immutable).
+
+Data race is prevented. Read is not locked, write is locked.
+
+Pointer dangling will not happen. Pointer dangling happens when pointer life span exceeds data life span. 
+
+---
 
 
 # Toolchain
