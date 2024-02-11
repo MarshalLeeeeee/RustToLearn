@@ -201,5 +201,15 @@ Pointer dangling will not happen. Pointer dangling happens when pointer life spa
 
 ---
 
+### Slicing
+use ```..``` to create a range syntax. Head index is 0 by default, tail index is length of the raw data by default.
+
+the slicing type of String is ```&str```, same for string litarals
+```let s = "Hello world"```
+
+the slicing type of data collections like array is ```&[T]```
+
+---
+
 
 # Toolchain
