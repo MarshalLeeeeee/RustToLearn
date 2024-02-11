@@ -149,17 +149,19 @@ function with return value. Explicit return using ```return``` statement or impl
 no condition for block entry, continue or block manually.
 
 use the following syntax to name loop block with label. continue and break can be performed to certain loop block
-```'loop_name: loop {...}```
+```'loop_block_name: loop {...}```
 
 ---
 
 ### While:
 Use condition to control the entry of the block
+```'while_block_name: while cond {...}```
 
 ---
 
 ### For:
 Iterate data through the container
+```for data in container {}``` 
 
 ---
 
