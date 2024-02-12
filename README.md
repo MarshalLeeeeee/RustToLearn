@@ -199,6 +199,10 @@ Data race is prevented. Read is not locked, write is locked.
 
 Pointer dangling will not happen. Pointer dangling happens when pointer life span exceeds data life span. 
 
+##### Auto reference / dereference
+Rust has auto reference and dereference in some syntax like method invoke. Unlike cpp where . is used for object and -> is used for pointer, rust only has one method operator due to auto reference and dereference
+
+
 ---
 
 ### Slicing

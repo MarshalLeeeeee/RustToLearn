@@ -93,10 +93,24 @@ fn test_dangling_reference() {
     // dangling_reference();
 }
 
+struct Test;
+impl Test {
+    fn auto_reference(&self, s: &String) {
+        println!("auto reference {}", s);
+    }
+}
+
+fn test_auto_reference() {
+    let test = Test;
+    test.auto_reference(&String::from("implicit reference"));
+    (&test).auto_reference(&String::from("explicit reference"));
+}
+
 fn main() {
     test_return_ownership();
     test_pass_reference();
     test_mod_reference();
     test_declare_reference();
     test_dangling_reference();
+    test_auto_reference();
 }
