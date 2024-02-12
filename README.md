@@ -255,3 +255,14 @@ multiple impl over one namespace is valid as long as no duplicate methods
 
 
 # Toolchain
+
+## println!
+{} tries to call Display function.
+
+{:?} tries to display a debug mode
+
+{:#?} 
+
+## dbg!
+give information of the value and line to stderr
+
