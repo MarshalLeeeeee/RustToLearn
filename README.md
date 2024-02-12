@@ -215,5 +215,43 @@ the slicing type of data collections like array is ```&[T]```
 
 ---
 
+### Struct
+#### Normal struct
+using struct keyword to declare a struct
+
+the field type does not have to be mutable if we would like to modify the struct
+
+read / write the field by ```struct.field```
+
+shorthand is allowed when variable name is the same as the field name
+
+by using ```..struct``` in struct initialization, struct can be partially copied
+
+#### Tuple Struct
+only have types, omit field names
+
+can declare a unique type with methods
+
+read / write using integer index
+
+#### Unit Struct
+behave similar to ```()```
+
+useful in trait implementation
+
+#### Method
+Use ```impl``` keyword over the target struct and declare functions inside the block
+
+The function's first paramter is the reference of the instance ```&self``` (with automatically &struct as type) (which is short for ```self: &Self``` or ```self: &struct```), followed by normal parameter declaration
+
+method can be called through instance
+```instance.method()```
+
+or through struct namespace
+```struct::method(&instance)``` (associated method)
+
+multiple impl over one namespace is valid as long as no duplicate methods
+
+
 
 # Toolchain
