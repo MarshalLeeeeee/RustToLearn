@@ -252,6 +252,30 @@ or through struct namespace
 
 multiple impl over one namespace is valid as long as no duplicate methods
 
+---
+
+### Enum
+use ```enum``` to declare an Enum.
+
+an enum value can only be one of the Enum variants. Use ```::``` to specify variant
+
+the type of variants can corresponds to the type of struct:
+ - no data
+ - normal struct (with field name)
+ - tuple struct (with sequential types)
+
+Whatever variant type, the variant of an enum is of type of the corresponding Enum.
+
+Move is performed for assignment
+
+#### Enum match
+use ```match instance {}``` to specify behavior for every enum variant.
+
+use ```=>``` to bridge variant (binded with __reference of variables__ (struct variable name / temp varaible name)) with scope block ```{}```
+
+all branches mush be covered, if enumerate all branches are unecessary, use ```_``` or ```other```(if values are required) as the default branch
+
+---
 
 
 # Toolchain
