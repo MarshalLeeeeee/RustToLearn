@@ -275,6 +275,31 @@ use ```=>``` to bridge variant (binded with __reference of variables__ (struct v
 
 all branches mush be covered, if enumerate all branches are unecessary, use ```_``` or ```other```(if values are required) as the default branch
 
+Actually, in the syntax below, sequential pattern match is what actually done. Pattern is like the lambda in python, a pattern is matched if and only if there exist instantiation of variable in pattern such that pattern is equal to instance. That's why pattern _, which contains a variable only, is always matchable. 
+
+```
+match instance {
+    patter1 => func1,
+    pattern2 => func2,
+    ...
+}
+```
+
+#### if let
+if let is a pattern match branch syntax
+```
+if let pattern = instance {}
+else {}
+```
+
+therefore, match can be considered as the simple syntax for 
+```
+if let patter1 = instance {}
+else if let patter2 = instance {}
+...
+else {}
+```
+
 ---
 
 
