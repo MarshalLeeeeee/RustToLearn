@@ -302,6 +302,146 @@ else {}
 
 ---
 
+### Manage Projects
+
+#### Crates: 
+A tree of modules that produces a library crate or executable (binary) crate.
+
+Binary crates are compiled to be executed, they must have main as the entry function (defined in Cargo.toml)
+
+Library crates do not require a main function and they are not compiled to be executable themselves. The namespace is the package name (defined in Cargo.toml)
+
+Crate roots: entry of the compile to create the root module. The library crate will be the root if exists, main.rs will be the root otherwise.
+
+#### Packages: 
+A Cargo feature that lets you build, test, and share crates.
+
+Contain a bundle of crates to form its functionality.
+
+Contain Cargo.toml to describe how to build these crates
+
+Contain as many binary crates as possible but at most one library crate
+```
+error: failed to parse manifest at `...\project_management\Cargo.toml`
+
+Caused by:
+  no targets specified in the manifest
+  either src/lib.rs, src/main.rs, a [lib] section, or [[bin]] section must be present
+```
+  
+A package can have multiple binary crates by placing files in the src/bin directory: each file will be a separate binary crate. If we cargo build, it works well. But if we cargo run, it requires us to specify which binary crate to run.
+```
+> ...\project_management> cargo run
+error: `cargo run` could not determine which binary to run. Use the `--bin` option to specify a binary, or the `default-run` manifest key.
+available binaries: bin1, project_management
+> ...\project_management> cargo build
+   Compiling project_management v0.1.0 (...\project_management)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.73s
+> ...\project_management>
+```
+
+We should specify by using --bin or add default-run = "xxx" to Cargo.toml to keep using cargo run
+```
+[package]
+...version = "0.1.0"
+default-run = "[project name]" // if we want to run main.rs
+default-run = "[bin name]" // if we want to run bin/[bin name].rs
+
+# customize bin name with target path, override the raw name
+[[bin]]
+name = "my_bin1"
+path = "src/bin/bin1.rs"
+
+[[bin]]
+name = "my_bin1"
+path = "src/bin/bin1.rs"
+```
+
+#### Modules and use: 
+Let you control the organization, scope, and privacy of paths.
+
+module is compiled as the following steps
+ - start from the crate root: binary crate or library crate
+ - declare module / submodule: 
+
+the compiler will then look for 
+- crate root inline
+- [parent dir]/[module name].rs (new style)
+- [parent dir]/[module name]/mod.rs (old style)
+
+new style file path and old one cannot exist as the same time.
+
+for crate root, [parent dir] is src
+
+for submodule, [parent dir] is [parent module dir]
+
+modules can be nested, leading to a module tree
+ - path to code in module: as long as the private rules allowed, we can visit the code using ```::```
+ - private vs public: code within a module is private to its parent by default. To make it public, using ```pub mod``` instead of ```mod```.
+ - ```use``` keyword: create shortcut for path to code
+
+#### Paths: 
+A way of naming an item, such as a struct, function, or module. Using ```::``` to make the path.
+
+##### absolute path: 
+start from crate root ```crate::xxx::yyy```
+
+keep unchanged as long as the yyy is in the same file
+
+##### relative path: 
+start from the current module, using self, super(like ```../``` in the file system)
+
+keep unchanged when the relative position is unchanged (like moved together)
+
+#### Pub for struct and enum
+Enums aren’t very useful unless their variants are public; it would be annoying to have to annotate all enum variants with pub in every case, so the default for enum variants is to be public. 
+
+Structs are often useful without their fields being public, so struct fields follow the general rule of everything being private by default unless annotated with pub.
+
+#### Use
+the ```use``` keyword is to shorthand a path with its final identifier.
+
+make the identifier under crate, i.e. add the path to crate root
+
+the effectiveness of use is restricted by scope, the function scope should be the same as the declaration scope
+
+Idiomatic use path is recommanded, where the function or instance is used with parent identifier kept, so as to avoid misleading to local fucntion or instance (i.e. use namespace to distinguish difference things)
+
+if naming still conflicts, we can ```use ... as ...```
+
+pub use can expose certain identifier under the current module / crate
+
+#### Extenal packages
+add package to Cargo.toml ```[dependencies]```
+
+import necessary module / function / instance to scope by ```use``` keyword
+
+nested import
+```
+// --snip--
+use std::cmp::Ordering;
+use std::io;
+// --snip--
+
+// --snip--
+use std::{cmp::Ordering, io};
+// --snip--
+
+==========
+use std::io;
+use std::io::Write;
+
+use std::io::{self, Write};
+```
+
+glob import
+```
+use std::collections::*;
+```
+
+---
+
+
 
 # Toolchain
 
