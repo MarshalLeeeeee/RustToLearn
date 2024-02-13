@@ -1,5 +1,5 @@
 # RustToLearn
-Rust learning progress
+Rust learning progress with toy examples for review and illustration.
 
 ## Syntax
 
