@@ -450,7 +450,7 @@ use std::collections::*;
 ### Vector
 use ```Vec::new()``` to create new empty vector with ownership
 
-use macro ```vec!([array])``` to create vector with given arrat with ownership
+use macro ```vec!([array])``` to create vector with given array with ownership
 
 use ```[]``` to get the reference of the object by index
 
