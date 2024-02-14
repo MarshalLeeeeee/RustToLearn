@@ -498,7 +498,29 @@ use ```chars()```, ```bytes()``` to get the corresponding iteration where we can
 
 use ```char_indices()``` is the iterator that returns char index (in byte unit) and the char itself
 
+---
 
+### HashMap
+use ```use std::collections::HashMap``` to import
+
+use ```HashMap<T_key, T_value>``` to specify type and ```HashMap::new()``` to init
+
+both ownership and reference can serve as key and value
+
+use ```insert()``` to insert a new entry with value or overwrite the old value
+
+use ```get()``` to get Option<&T_value> with the reference of T_key
+
+#### Entry
+use ```entry(key)``` to own an entry enum whoes variant can be
+ - VacantEntry : if not exist
+ - OccupiedEntry : if exist
+
+use ```to_insert(v)``` to perform insertion when VacantEnry, and return mutable reference
+
+use ```and_modify(func)``` to perform modify function
+
+---
 
 
 # Toolchain
