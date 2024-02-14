@@ -70,6 +70,12 @@ shadowing + let immutable is still different from let mut. shadowing isolates sc
 ### Data types
 Rust is a statically typed language.
 
+By using the syntax, without type explicitly declared. The type is inferred by compiler according to context. 
+```
+let v = ...;
+```
+Compiler will cast it to the type to meet the function paramter signature if any.
+
 #### Scalar: 
 integer,  float, boolean, chracter
 
