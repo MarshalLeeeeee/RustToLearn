@@ -462,6 +462,41 @@ use ```push(o)``` and ```pop()``` to add or remove object from the vector
 
 ---
 
+### String
+a collection of bytes and provides a representation for text
+
+both String and string slice are UTF-8 encoded
+
+use ```String::new()``` to create a new empty String instance
+
+use ```string.to_string()``` to create String instance according to string literal
+
+use ```String::from(string)``` to create String instance according to string literal
+
+use ```push_str(s)``` to append string literal to the tail, ```push(c)``` to append one character to the tail
+
+use ```+``` operator to append string which implicitly call ```add(self, s: &str) -> String```
+
+use macro ```format!()``` to take String as reference and return a String with ownership
+
+use ```contains()``` to check if contains a substring
+
+use ```replace(s, new_s)``` to replace substring and return a new String with ownership
+
+use ```replace_range()``` to replace the current string slice with new substring in place
+
+#### Internal representation
+String is a wrap over ```Vector<u8>```, because character is encoded as bytes (u8) in the memory.
+
+use ```chars()```, ```bytes()``` to get the corresponding iteration where we can 
+
+ - for loop it
+ - use ```next()``` to iter over
+ - use ```nth()``` to jump to the corresponding position
+
+use ```char_indices()``` is the iterator that returns char index (in byte unit) and the char itself
+
+
 
 
 # Toolchain
