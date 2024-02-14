@@ -447,6 +447,21 @@ use std::collections::*;
 
 ---
 
+### Vector
+use ```Vec::new()``` to create new empty vector with ownership
+
+use macro ```vec!([array])``` to create vector with given arrat with ownership
+
+use ```[]``` to get the reference of the object by index
+
+use ```get()``` to the the option of the reference of the object by index, index overflow is allowed
+
+use ```for o in &(mut) v {}``` to iterate over vector with RO / RW permission.
+
+use ```push(o)``` and ```pop()``` to add or remove object from the vector
+
+---
+
 
 
 # Toolchain
