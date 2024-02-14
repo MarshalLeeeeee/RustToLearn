@@ -460,6 +460,8 @@ use ```for o in &(mut) v {}``` to iterate over vector with RO / RW permission.
 
 use ```push(o)``` and ```pop()``` to add or remove object from the vector
 
+use ```sort()``` to sort the vector from small to large in place
+
 ---
 
 ### String
