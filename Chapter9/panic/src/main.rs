@@ -4,7 +4,7 @@ fn test_vector_index_overflow() {
 }
 
 fn test_explicit_panic() {
-    panic!("test panic");
+    let _x = panic!("test panic"); // panic! has return value
 }
 
 fn main() {
