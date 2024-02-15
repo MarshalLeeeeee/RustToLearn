@@ -258,6 +258,10 @@ or through struct namespace
 
 multiple impl over one namespace is valid as long as no duplicate methods
 
+#### Cmp
+
+impl ```Eq PartialEq Ord PartialOrd``` to support compare (like sort in vector)
+
 ---
 
 ### Enum
@@ -510,6 +514,8 @@ both ownership and reference can serve as key and value
 use ```insert()``` to insert a new entry with value or overwrite the old value
 
 use ```get()``` to get Option<&T_value> with the reference of T_key
+
+use ```get_mut()``` to get Option<&mut T_value> with the reference of T_keys
 
 #### Entry
 use ```entry(key)``` to own an entry enum whoes variant can be
