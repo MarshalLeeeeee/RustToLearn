@@ -4,9 +4,14 @@ Rust learning progress with toy examples for review and illustration.
 ## Syntax
 
 ### Hello world:
+use 4 spaces as indent
+
 use main as the code entry
 
-use 4 spaces as indent
+#### main
+normally return ()
+
+but can return any type that implement the ```std::process::Termination``` trait, which contains a function report that returns an ExitCode, for example: ```Result<(), std::io::Error>```
 
 ---
 
@@ -543,6 +548,22 @@ use environment variable to give more stack information when panic
 $env:RUST_BACKTRACE=1; cargo run
 $env:RUST_BACKTRACE='full'; cargo run
 ```
+
+If there is no reason to fail (violate contract) or no way to recover or lead to insecure (like visit invalid memory), call ```panic!```
+
+### Result
+Result is an enum which is either ```Ok(T)``` or ```Err(E)```, ```std::io::Error``` can be one instance of E.
+
+use ```unwrap_or_else()``` to return T directly or return from an error callback
+
+use ```expect()``` to deal with ok branch only and leave specific error msg
+
+error can be propagated by wrap data in Result
+
+use ```?``` operator after result to unwrap the value if ok or return err from the whole function; the ```?``` operator can only be used in a function that returns ```Result``` or ```Option``` (or another type that implements ``FromResidual```)
+
+If there can possibly exist error, return result instead of call ```panic!```
+
 
 
 # Toolchain
