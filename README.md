@@ -528,6 +528,22 @@ use ```and_modify(func)``` to perform modify function
 
 ---
 
+### Panic
+use ```panic!(text)``` to abort the program with text shown, it's like exception thrown without try and deals in python.
+
+we can specify if panic cleanup memory ot not in Cargo.toml. Memory is cleaned up by default when panic
+```
+[profile.release]
+panic = 'abort' # abort without cleanup
+```
+
+use environment variable to give more stack information when panic
+```
+// for powershell
+$env:RUST_BACKTRACE=1; cargo run
+$env:RUST_BACKTRACE='full'; cargo run
+```
+
 
 # Toolchain
 
