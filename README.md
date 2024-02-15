@@ -529,7 +529,7 @@ use ```and_modify(func)``` to perform modify function
 ---
 
 ### Panic
-use ```panic!(text)``` to abort the program with text shown, it's like exception thrown without try and deals in python.
+use ```panic!(text)``` to abort the program with text shown, it's like exception thrown without try and deals in python. This macro returns something.
 
 we can specify if panic cleanup memory ot not in Cargo.toml. Memory is cleaned up by default when panic
 ```
