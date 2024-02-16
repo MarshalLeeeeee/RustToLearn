@@ -564,6 +564,37 @@ use ```?``` operator after result to unwrap the value if ok or return err from t
 
 If there can possibly exist error, return result instead of call ```panic!```
 
+---
+
+### Generic Type
+abstract functionality that is capable for a group of data types
+
+use ```<T, ...>``` behind the identifier as the syntax to generalize type to a specific group
+
+generic type for impl is valid over the whole scope, to precisely restrict the method with certain traits, we can group method with multiple traits with different generic types
+
+since enum type always has one variant valid at one time, why cannot we always use one generic type T? This is probably because we would like the type of different variant has different features. Remember that, generic type defines a set of valid type, if we would like the type set to be different, we have to decouple them into two types.
+
+Rust will not select the more specified typed method among the same names (as cpp), rust treats this as ambiguous and rejects
+
+Like cpp, monomorphization is performed in compile time to revert generic type to specific inferred type.
+
+---
+
+### Trait
+trait define shared behavior within different types
+
+to ensure certain functionality of generic type T, we should use trait bound to convince the compiler such that the interface of T is sufficient
+
+use ```trait Trait {...}``` to includes a couple of method signatures inside. the implementation is not necessary. We can implement the interface with default definition. impl trait for type support override.
+
+use ```trait Trait<T> {...}``` to have a trait of generic type
+
+method signature ```impl Trait``` means some type that has Trait. However, it is still under the syntax of generic type. In other word, impl Trait will be monomorphized to one specific type in compile time, which the compiler does not allow different types.
+
+use ```fn func<T>(x: &impl Trait<T>)``` to utilize generic trait as trait bound.
+
+---
 
 
 # Toolchain
