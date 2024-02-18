@@ -596,6 +596,30 @@ use ```fn func<T>(x: &impl Trait<T>)``` to utilize generic trait as trait bound.
 
 ---
 
+### Lifetime
+lifetime of reference is inferred implicitly in most cases, however, we can declare it explicitly.
+
+lifetime of reference is mainly to avoid dangling pointer (pointer's lifetime is larger than its value's lifetime)
+
+generic lifetime uses lifetime annotation ```'a``` to relate parameters with each other: parameters with the same annotation share the same length of lifetime. Generic lifetime 'a means the compiler will find common lifetime such that to the function, the parameter decorated with same generic lifetime will end the lifetime at the same point.
+
+lifetime syntax is about connecting the lifetimes of various parameters and return values of functions
+
+whenever there is reference declaration in api, lifetime annotation is required. Rust decouples api compilation check with implementation compilation check.
+
+lifetime elision is a syntax sugar for missing lifetime annotation. The three rules are as follow:
+ - The first rule is that the compiler assigns a lifetime parameter to each parameter that’s a reference. In other words, a function with one parameter gets one lifetime parameter: fn foo<'a>(x: &'a i32); a function with two parameters gets two separate lifetime parameters: fn foo<'a, 'b>(x: &'a i32, y: &'b i32); and so on.
+ - The second rule is that, if there is exactly one input lifetime parameter, that lifetime is assigned to all output lifetime parameters: fn foo<'a>(x: &'a i32) -> &'a i32.
+ - The third rule is that, if there are multiple input lifetime parameters, but one of them is &self or &mut self because this is a method, the lifetime of self is assigned to all output lifetime parameters. 
+
+#### elided lifetime
+use ```'_``` to denote elided lifetime which will be inferred by the compiler with the specific lifetime. it is used for specify generic lifetime
+
+#### static lifetime
+use ```'static``` to denote static lifetime which is as long as the program's lifetime
+
+---
+
 
 # Toolchain
 
