@@ -620,6 +620,45 @@ use ```'static``` to denote static lifetime which is as long as the program's li
 
 ---
 
+### test
+by ```cargo new xxx --lib```, a test mod is generated where cargo test can be implimented
+
+beyond compilation check, we would like to check the functionality of the methods
+ - passed
+ - failed
+ - ignored: specify by #[ignore], useful for some expensive test
+ - measured
+ - filtered out: specify by [test_func_substring] filter
+
+use ```#[should_panic(expected = "substring")]``` to expect a fail with substring match with panic msg
+
+except for assert in the test function, we can return Result for test function
+
+module decorated with ```#[cfg(test)]``` is only compiled in cargo test, but not cargo build
+
+#### Test functions
+cargo test recursively run functions under all mod starting from library root crate decorated with ```#[test]```
+
+tests/ puts public test rs
+
+test functions in lib / module crates are tested first (unit test - private functions), followed by binary crates, followed by tests/xx.rs (integration test - public functions), finalized by doc test. fail in any stage will block the following stages
+
+#### Parser in command
+ - ```--help```: get help information
+ - ```--test-thresad```: the number of threads to run tests, by default not 1
+ - ```--show-output```: show print outputs anyway. by default, only fail test outputs 
+ - ```--ignored```: test ignored only
+ - ```--include-ignored```: test normal with ignored
+ - ```--test```: specify taget rs
+ - ```cargo test [test_func_substring]``` : run test funcs matching with the substring
+
+#### Test Attributes:
+- ```#[test]``` - Indicates a function is a test to be run. This function takes no arguments.
+- ```#[bench]``` - Indicates a function is a benchmark to be run. This unction takes one argument (test::Bencher).
+- ```#[should_panic]``` - This function (also labeled with ```#[test]```) will only pass if the code causes a panic (an assertion failure or panic!) A message may be provided, which the failure string must contain: #[should_panic(expected = "foo")].
+- ```#[ignore]``` - When applied to a function which is already attributed as a test, then the test runner will ignore these tests during normal test runs.
+
+---
 
 # Toolchain
 
