@@ -630,9 +630,9 @@ beyond compilation check, we would like to check the functionality of the method
  - measured
  - filtered out: specify by [test_func_substring] filter
 
-use ```#[should_panic(expected = "substring")]``` to expect a fail with substring match with panic msg
+except for assert in the test function, we can return __Result__ for test function
 
-except for assert in the test function, we can return Result for test function
+use ```#[should_panic(expected = "substring")]``` to expect a fail with substring match with panic msg, to use this feature, the test function must return ```()```
 
 module decorated with ```#[cfg(test)]``` is only compiled in cargo test, but not cargo build
 
@@ -659,6 +659,9 @@ test functions in lib / module crates are tested first (unit test - private func
 - ```#[ignore]``` - When applied to a function which is already attributed as a test, then the test runner will ignore these tests during normal test runs.
 
 ---
+
+### Enrivonment Variable
+use ```std::env::var()``` to get certain environment variables. If exists, the type is ```String```.
 
 # Toolchain
 
