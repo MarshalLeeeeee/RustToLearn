@@ -663,6 +663,35 @@ test functions in lib / module crates are tested first (unit test - private func
 ### Enrivonment Variable
 use ```std::env::var()``` to get certain environment variables. If exists, the type is ```String```.
 
+---
+
+### Closure
+
+#### declaration
+use ```|x,y| func(x,y)``` to define an anonymous function closure, which is equivalent to this verbose version, for instance, ```|x:i32, y:i32| -> i32 {func(x,y)}```.
+
+Without explicit signature, compile will infer it to the fixed signature.
+
+#### ownership
+Closure implement borrowing as default. To borrowing as immutable or mutable, using ```mut``` keyword. For mutable closure, rust moves ownership of closure in assignment; for immutable closure, rust does not move ownership of closure in assignment. 
+
+To take the ownership of value in the scope, use ```move``` ahead of the declaration of closure.
+
+Borrowing reference or moving ownership of value in the scope happens right after the declaration of closure, not until the use of closure. We can consider closure capture as the declaration of struct, can whether the closure holds a reference o ownership depends on ```move``` for closure and ```&``` for struct field declaration.
+
+#### handling
+There are three ways of handling defined as trait:
+ - ```FnOnce``` the first execution of the closure is guaranteed.
+ - ```FnMut``` as many as executsions are guaranteed, values can be mutated.
+ - ```Fn``` as many as executions are guaranteed, values cannot be mutated.
+
+The set of function trait has the following relationship:
+```
+Set(Fn) < Set(FnMut) < Set(FnOnce)
+```
+
+We can infer the handling of closure by imagining capture as struct field and closure implementation as struct implementation.
+
 # Toolchain
 
 ### println!
