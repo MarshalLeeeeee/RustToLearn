@@ -692,7 +692,15 @@ Set(Fn) < Set(FnMut) < Set(FnOnce)
 
 We can infer the handling of closure by imagining capture as struct field and closure implementation as struct implementation.
 
-# Toolchain
+## Organization
+
+Rust provides us with different types of organization scope, like crate, module, package, workspace, etc. (So far so list, expand for TODO)
+ - Crate: the smallest unit of code, basically the single rust file that ends with ```.rs```. A crate can either be binary or library.
+ - Module: an abstarct with the concept of namespace. A module or a namespace is usually still implemented by a crate. The namespace, however, provides us a better organization of code, i.e., wrapping the related function into a same name.
+ - Package: a bundle of crates that forms a functionality in a higher hierarchy. A package can be characterized with the Cargo.toml which contains a ```[package]``` configuration. A package can be published to [crates.io](crates.io), which is alike module in python.
+ - Workspace: a way to organize multiple packages and dependencies between them. The workspace contains Cargo.toml which contains a ```workspace``` section that arranges multiple workspaces. The workspace itself does not have to be a package, which contains ```package``` in the Cargo.toml. A workspace may not contain any specific logic in ```src/*```. A workspace is just a management of packages, which provides a even higher functionality than package.
+
+## Toolchain
 
 ### println!
 {} tries to call Display function.
