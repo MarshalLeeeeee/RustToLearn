@@ -641,7 +641,7 @@ cargo test recursively run functions under all mod starting from library root cr
 
 tests/ puts public test rs
 
-test functions in lib / module crates are tested first (unit test - private functions), followed by binary crates, followed by tests/xx.rs (integration test - public functions), finalized by doc test. fail in any stage will block the following stages
+test functions in lib / module crates are tested first (unit test - private functions), followed by binary crates, followed by tests/xx.rs (integration test - public functions), finalized by doc test (parsed from code example in /// comment). fail in any stage will block the following stages
 
 #### Parser in command
  - ```--help```: get help information
@@ -651,6 +651,7 @@ test functions in lib / module crates are tested first (unit test - private func
  - ```--include-ignored```: test normal with ignored
  - ```--test```: specify taget rs
  - ```cargo test [test_func_substring]``` : run test funcs matching with the substring
+ - ```cargo test -p [package]``` : run test for spacific package in a workspace
 
 #### Test Attributes:
 - ```#[test]``` - Indicates a function is a test to be run. This function takes no arguments.
