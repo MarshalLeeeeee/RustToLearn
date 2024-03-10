@@ -693,6 +693,15 @@ Set(Fn) < Set(FnMut) < Set(FnOnce)
 
 We can infer the handling of closure by imagining capture as struct field and closure implementation as struct implementation.
 
+---
+
+### Smart pointer
+Pointer is the data structure that holds for the address of some data.
+ - Raw pointer (reference): pointer for stack data. The concept of ownership is also relavent to stack data.
+ - Box: pointer to heap data. ```new``` take owenership from stack and remove the data to the heap. This process can make the lifetime of data longer.
+
+---
+
 ## Organization
 
 Rust provides us with different types of organization scope, like crate, module, package, workspace, etc. (So far so list, expand for TODO)
