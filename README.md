@@ -698,7 +698,12 @@ We can infer the handling of closure by imagining capture as struct field and cl
 ### Smart pointer
 Pointer is the data structure that holds for the address of some data.
  - Raw pointer (reference): pointer for stack data. The concept of ownership is also relavent to stack data.
- - Box: pointer to heap data. ```new``` take owenership from stack and remove the data to the heap. This process can make the lifetime of data longer.
+ - Box: pointer to heap data. ```new``` take owenership from stack and remove the data to the heap. This process can make the lifetime of data longer. Similar to ```std::unique_ptr``` in cpp, where every box pointer has a bijection with the heap data
+ - Rc: pointer to heap data. Multiple Rc can point to the same heap data, leading to save for heap memory. However, the heap data hold by Rc is immutable. Similar to ```std::shared_ptr``` in cpp.
+ - RefCell: pointer to heap data. Very alike Box, because it is bijected with the heap data. However, even if the RefCell is immutable as declared, the heap value can still be mutated. RefCell keeps track of the count for both the immutable and mutable borrows, where multiple immutable borrows or exact one mutable borrow are allowed across their whole life time.
+ - Weak: pointer to heap data, but does not have the ownership, similar to ```std::weak_ptr``` in cpp.
+
+There's a way to 'mutate' value holded by Rc such that we can still take the memory avantage of Rc, which is to use RefCell to the value holded by Rc. Actually, RefCell provides a 'backdoor' for the data where the mutability restriction inherited from its parent can be ignored which provided interior mutability while keeping other data of the parent immutable. However, this 'backdoor' requires the developer to be careful to avoid panic at the runtime. 
 
 ---
 
