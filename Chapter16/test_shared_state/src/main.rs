@@ -36,6 +36,9 @@ fn test_mutex_multi_threads() {
             thread::sleep(Duration::from_millis(1000));
             *obj += 1; // Mutex provides interior mutability as RefCell
             println!("Thread {} try to release the mutex to {}", i, obj);
+            drop(obj); // Mutex releases explicitly
+            thread::sleep(Duration::from_millis(1000));
+            println!("Thread {} ends", i);
         });
         handles.push(handle);
     }
