@@ -707,6 +707,26 @@ There's a way to 'mutate' value holded by Rc such that we can still take the mem
 
 ---
 
+### Concurrency
+Use ```thread::spawn``` to create new thread alone with the main thread. The lifespan of sub thread is always shorter than the main thread. To ensure the completion of some sub-thread, we can ```join``` sub thread to block the main thread.
+
+When sub thread wants to use data from the main thread, the sub thread should take the ownership of the data by using ```move``` in the closure (or rely on the Copy trait implemented by the type).
+
+When thread calls ```panic!```, only the corresponding thread will be killed.
+
+```mpsc::channel``` can be used to transmit data through different threads.
+
+```Arc<Mutex<T>>``` can be used to share the same piece of data by different threads. ```Arc``` is a thread-safe ```Rc``` that implements reference counts while ```Mutex``` offers interior mutability like ```RefCell``` and exclusive permission. Although ```Mutex``` offers auto release when the acquired object is out of scope, deadlock can still occur when multiple mutexes exist.
+
+Whether a type is thread-safe depends on two traits: ```Send``` and ```Sync```. ```Send``` guarantees the transmit of data through threads are safe while ```Sync``` ganrantees the visit of same data from different threads are reliable. All primitive types except for raw pointers implement ```Send```, struct and enum that has all ```Send``` implemented types implement ```Send```. Generally, ```Send``` trait is automatically inferred by the Rust compiler. However, we can still unsafe implement ```Send``` manually.
+
+---
+
+### OOP
+todo
+
+---
+
 ## Organization
 
 Rust provides us with different types of organization scope, like crate, module, package, workspace, etc. (So far so list, expand for TODO)
