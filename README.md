@@ -723,7 +723,11 @@ Whether a type is thread-safe depends on two traits: ```Send``` and ```Sync```. 
 ---
 
 ### OOP
-todo
+There are four pillars of OOP characteristic: encapsulation, abstraction, inheritence, polymorphism. Let's see how Rust owns them.
+ - Encapsulation: Rust provides encapsulation by ```pub``` in lib and modules.
+ - Abstraction: Rust provides ```trait``` to abstract and group certain methods.
+ - Inheritence: Rust __DOESN'T__ provide interitence, both the attribute and the method. Rather than inheritence, Rust assemble the type with traits. Trait provides abstarction as well as reusability. However, the attribute has to be re-declared. Still, features like ```super``` in python or ```Parent::``` in cpp to invoke the method from direct parent is not supported in Rust, which might lead to reduction of abstraction and reusability and the cost of management.
+ - Polymorphism: Rust provides ```dyn``` to enable dynamic types which can lead to polymorphism of the same api declared in the trait.
 
 ---
 
