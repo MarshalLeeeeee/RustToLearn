@@ -731,6 +731,21 @@ There are four pillars of OOP characteristic: encapsulation, abstraction, inheri
 
 ---
 
+### Pattern
+Patterns can be categorized as irrefutable and refutable.
+ - Irrefutable: Assignment syntax actually performs irrefutable pattern match.
+ - Refutable: Patterns that are possibly failed to match via type check are considered refutable. Assignment syntax does not allow refutable pattern matching. Refutable pattern match can be used in condition judgement.
+
+```..=``` can be used to create inclusive range, which can be used as OR of all single pattern.
+
+```..``` can be used in destructuring for omitting variables. ```..``` can be used at most once to avoid ambiguity.
+
+Match guard: provides extra condition over the patterm match.
+
+Bindings ```@```: binds temp variables to anonymous pattern for match guard or branch logic.
+
+---
+
 ## Organization
 
 Rust provides us with different types of organization scope, like crate, module, package, workspace, etc. (So far so list, expand for TODO)
