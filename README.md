@@ -746,6 +746,15 @@ Bindings ```@```: binds temp variables to anonymous pattern for match guard or b
 
 ---
 
+### Unsafe rust
+Rust provides __unsafe__ feature to not only increase the competence of low-level memory access and modification but also allow developers to write more aggresive codes with their own responsibility of potential risk. Unsafe Rust mainly relax the restriction of operations to __raw pointers__. Since raw pointer basically contains possible memory address, Rust compiler has no way of knowing its validness. Therefore, Rust rejects dereference of raw pointers as conservatively as it performs in other checks.
+
+With unsafe keyword, we can dereference both const and mutable raw pointers. Changes by mutable raw pointers are also visible to const raw pointers (which is natural as data are in the same memory) (however, does violate the borrowing rules of Rust where immutable and mutable reference overlap in their lifespan).
+
+Sharing the same design with raw pointers, mutable static (stored in the same memory), union (all data fields share the same memory without knowing which one is actually the only valid one) can only be derefered in unsafe blocks.
+
+---
+
 ## Organization
 
 Rust provides us with different types of organization scope, like crate, module, package, workspace, etc. (So far so list, expand for TODO)
