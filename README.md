@@ -188,7 +188,7 @@ ownership rules:
 
 Stack: fix size and type, cheap to read and manage
 
-Heap: mutable size, expensize to read and manage
+Heap: mutable size, expensive to read and manage
 
 #### Assignment / Function paramter / Function return
 
@@ -579,6 +579,8 @@ Rust will not select the more specified typed method among the same names (as cp
 
 Like cpp, monomorphization is performed in compile time to revert generic type to specific inferred type.
 
+We can have default generic type in the declaration.
+
 ---
 
 ### Trait
@@ -593,6 +595,10 @@ use ```trait Trait<T> {...}``` to have a trait of generic type
 method signature ```impl Trait``` means some type that has Trait. However, it is still under the syntax of generic type. In other word, impl Trait will be monomorphized to one specific type in compile time, which the compiler does not allow different types.
 
 use ```fn func<T>(x: &impl Trait<T>)``` to utilize generic trait as trait bound.
+
+When same api exists in multiple trait, we can use ```<Type as Trait>::func_name(*args)``` to remove ambiguity.
+
+We can bound the type using the trait by ```trait Triat: bound {}```.
 
 ---
 
@@ -693,6 +699,9 @@ Set(Fn) < Set(FnMut) < Set(FnOnce)
 
 We can infer the handling of closure by imagining capture as struct field and closure implementation as struct implementation.
 
+#### as param and return
+Except for using handing bound for closure as param and return type in function, we can use function signature instead. Fn closure can be coerced to function signature if they do not capture any variable, and function signature can be coerced to any closure set. 
+
 ---
 
 ### Smart pointer
@@ -752,6 +761,21 @@ Rust provides __unsafe__ feature to not only increase the competence of low-leve
 With unsafe keyword, we can dereference both const and mutable raw pointers. Changes by mutable raw pointers are also visible to const raw pointers (which is natural as data are in the same memory) (however, does violate the borrowing rules of Rust where immutable and mutable reference overlap in their lifespan).
 
 Sharing the same design with raw pointers, mutable static (stored in the same memory), union (all data fields share the same memory without knowing which one is actually the only valid one) can only be derefered in unsafe blocks.
+
+---
+
+### Associated Type
+Associated type is another way of providing type templates via type alias placeholder. However, different from generic type, associated type does not extend the parent signature. In simple terms, we can impl ```Trait<T>``` and ```Trait<U>``` the same time for some type, but we can solely impl ```Trait``` once for some type with associated type instantiated.
+
+---
+
+### Macro
+Rust macros can be roughly categorized into two types: declarative macro and procedural macro. Macro can be used to do things unable for function, like unfixed parameter count. Macro is a technique to create or manipulate code text before compilation.
+ - Decalarative macro: code pattern match and generate code with pattern text. Using macro with ```() [] {}``` are all valid.
+ - Procedural macro: manipulate input code using syntax tree.
+   - Custom derive macro: automatical implementation of trait for struct or enum by ```#[derive(trait)]```. The implementation of macro is usually realized in a separated sub-crate, which has ```[lib] proc-macro=true``` in its ```Cargo.toml```. The main crate usually include this sub-crate in its dependency, and use ```sub_create::trait_name``` in its ```lib.rs```.
+   - Attribute-like macro: can be used decorate function besides to structure and enum. The macro can take multiple arguments to customize the behavior.
+   - Function-like macro: very similar to decalarative macro, but owns the characteristic of procedural macro. Return an expression.
 
 ---
 
