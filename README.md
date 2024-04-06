@@ -787,7 +787,7 @@ Rust provides us with different types of organization scope, like crate, module,
  - Package: a bundle of crates that forms a functionality in a higher hierarchy. A package can be characterized with the Cargo.toml which contains a ```[package]``` configuration. A package can be published to [crates.io](crates.io), which is alike module in python.
  - Workspace: a way to organize multiple packages and dependencies between them. The workspace contains Cargo.toml which contains a ```workspace``` section that arranges multiple workspaces. The workspace itself does not have to be a package, which contains ```package``` in the Cargo.toml. A workspace may not contain any specific logic in ```src/*```. A workspace is just a management of packages, which provides a even higher functionality than package.
 
-## Toolchain
+<!-- ## Toolchain
 
 ### println!
 {} tries to call Display function.
@@ -797,5 +797,5 @@ Rust provides us with different types of organization scope, like crate, module,
 {:#?} 
 
 ### dbg!
-give information of the value and line to stderr
+give information of the value and line to stderr -->
 
